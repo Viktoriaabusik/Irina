@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Portfolio</title>
+<title>Cinematic Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,56 +18,48 @@
 }
 
 body{
-    background:#050505;
-    color:white;
     font-family:'Inter',sans-serif;
+    background:#f8f7f5;
+    color:#111;
     overflow-x:hidden;
 }
 
-/* background glow */
-
-.blur1{
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#5d3bff;
-    filter:blur(180px);
-    opacity:0.15;
-    top:-150px;
-    left:-100px;
-    z-index:-1;
-}
-
-.blur2{
-    position:fixed;
-    width:400px;
-    height:400px;
-    background:#00bfff;
-    filter:blur(180px);
-    opacity:0.12;
-    bottom:-120px;
-    right:-100px;
-    z-index:-1;
-}
-
-.container{
-    width:90%;
-    max-width:1300px;
-    margin:auto;
-}
-
-/* HERO */
+/* VIDEO BACKGROUND */
 
 .hero{
-    min-height:100vh;
+    position:relative;
+    height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    position:relative;
-    text-align:center;
+    overflow:hidden;
 }
 
+.bg-video{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* затемнение для читаемости */
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.45);
+    backdrop-filter:blur(2px);
+}
+
+/* content */
+
 .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    width:90%;
     max-width:900px;
 }
 
@@ -78,8 +70,14 @@ body{
     overflow:hidden;
     margin:auto;
     margin-bottom:35px;
-    border:2px solid rgba(255,255,255,0.15);
-    box-shadow:0 0 40px rgba(255,255,255,0.08);
+
+    border:2px solid rgba(255,255,255,0.9);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.08),
+    0 0 0 10px rgba(255,255,255,0.25);
+
+    backdrop-filter:blur(20px);
 }
 
 .photo img{
@@ -89,47 +87,51 @@ body{
 }
 
 .small-text{
-    letter-spacing:4px;
+    letter-spacing:5px;
     text-transform:uppercase;
-    color:#8f8f8f;
-    font-size:13px;
-    margin-bottom:20px;
+    font-size:12px;
+    color:#666;
+    margin-bottom:25px;
 }
 
 h1{
-    font-size:78px;
-    line-height:1;
+    font-size:82px;
+    line-height:0.95;
     margin-bottom:30px;
     font-weight:700;
-    letter-spacing:-3px;
+    letter-spacing:-4px;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#ffffff,#7f8cff,#d7d7d7);
+    background:linear-gradient(90deg,#7d8cff,#b48cff);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .description{
-    color:#a8a8a8;
     max-width:700px;
     margin:auto;
+    font-size:19px;
     line-height:1.8;
-    font-size:18px;
+    color:#444;
 }
 
-/* videos */
+/* section */
 
 .videos-section{
     padding:120px 0;
+    width:90%;
+    max-width:1300px;
+    margin:auto;
 }
 
 .section-title{
-    font-size:56px;
+    font-size:58px;
     margin-bottom:60px;
-    font-weight:700;
-    letter-spacing:-2px;
+    letter-spacing:-3px;
 }
+
+/* grid */
 
 .videos-grid{
     display:grid;
@@ -137,18 +139,27 @@ h1{
     gap:35px;
 }
 
+/* cards */
+
 .video-card{
     position:relative;
     overflow:hidden;
-    border-radius:28px;
-    background:#111;
-    border:1px solid rgba(255,255,255,0.08);
+    border-radius:34px;
+
+    background:rgba(255,255,255,0.7);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.8);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.08);
+
     transition:0.5s;
 }
 
 .video-card:hover{
-    transform:translateY(-12px);
-    box-shadow:0 25px 60px rgba(0,0,0,0.6);
+    transform:translateY(-12px) scale(1.02);
 }
 
 .video-card video{
@@ -156,27 +167,18 @@ h1{
     display:block;
 }
 
-.overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,0.75),transparent 60%);
-}
-
 .video-info{
-    position:absolute;
-    bottom:25px;
-    left:25px;
-    z-index:2;
+    padding:25px;
 }
 
 .video-info h3{
     font-size:24px;
-    margin-bottom:8px;
+    margin-bottom:10px;
 }
 
 .video-info p{
-    color:#d0d0d0;
-    font-size:14px;
+    color:#666;
+    line-height:1.6;
 }
 
 /* footer */
@@ -184,24 +186,30 @@ h1{
 footer{
     padding:50px 20px;
     text-align:center;
-    color:#6f6f6f;
-    border-top:1px solid rgba(255,255,255,0.06);
+    color:#777;
+    border-top:1px solid rgba(0,0,0,0.08);
 }
 
-/* responsive */
+/* mobile */
 
 @media(max-width:768px){
 
     h1{
-        font-size:46px;
+        font-size:50px;
+        letter-spacing:-2px;
     }
 
     .section-title{
-        font-size:38px;
+        font-size:40px;
     }
 
     .description{
         font-size:16px;
+    }
+
+    .photo{
+        width:140px;
+        height:140px;
     }
 
 }
@@ -211,37 +219,55 @@ footer{
 
 <body>
 
-<div class="blur1"></div>
-<div class="blur2"></div>
+<!-- HERO -->
 
 <section class="hero">
 
-<div class="hero-content container">
+    <!-- ВИДЕО ФОН -->
+    <video class="bg-video"
+           autoplay
+           muted
+           loop
+           playsinline>
 
-    <div class="photo">
-        <!-- ВСТАВЬ СВОЕ ФОТО -->
-        <img src="yourphoto.jpg" alt="">
+        <!-- ВСТАВЬ СВОЕ ВИДЕО -->
+        <source src="background.mp4" type="video/mp4">
+
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="photo">
+
+            <!-- ВСТАВЬ СВОЕ ФОТО -->
+            <img src="images/p2.webp" alt="">
+
+        </div>
+
+        <div class="small-text">
+            REELSMAKER • CREATIVE EDITOR
+        </div>
+
+        <h1>
+            Мое <span class="gradient">мини-портфолио</span><br>
+            рилсмейкера
+        </h1>
+
+        <p class="description">
+            Привет! Я Ира. Создаю атмосферные reels,монтаж
+            и стильный визуал, который цепляет внимание
+            с первых секунд.В этой сфере не так давно,опыт есть.На работе создавала рилсы,чем повысила охваты.Очень хочу создавать рилсы, радовать людей,и служить Богу!
+        </p>
+
     </div>
-
-    <div class="small-text">
-        REELSMAKER • VIDEO EDITOR
-    </div>
-
-    <h1>
-        Мое <span class="gradient">мини-портфолио</span><br>
-        рилсмейкера
-    </h1>
-
-    <p class="description">
-        Создаю cinematic reels, атмосферные видео и динамичный контент,
-        который цепляет внимание с первых секунд.
-    </p>
-
-</div>
 
 </section>
 
-<section class="videos-section container">
+<!-- VIDEOS -->
+
+<section class="videos-section">
 
     <h2 class="section-title">
         Мои видео:
@@ -251,15 +277,13 @@ footer{
 
         <div class="video-card">
 
-            <video controls poster="">
-                <source src="video1.mp4" type="video/mp4">
+            <video controls>
+                <source src="videos/vid1.mp4" type="video/mp4">
             </video>
 
-            <div class="overlay"></div>
-
             <div class="video-info">
-                <h3>Cinematic Reel</h3>
-                <p>Visual storytelling</p>
+                <h3>Рилс:Это место для тебя</h3>
+                <p></p>
             </div>
 
         </div>
@@ -267,14 +291,12 @@ footer{
         <div class="video-card">
 
             <video controls>
-                <source src="video2.mp4" type="video/mp4">
+                <source src="videos/vid2.mp4" type="video/mp4">
             </video>
 
-            <div class="overlay"></div>
-
             <div class="video-info">
-                <h3>Fashion Edit</h3>
-                <p>Creative direction</p>
+                <h3>Рилс:Покажи свой образ</h3>
+                <p></p>
             </div>
 
         </div>
@@ -282,14 +304,12 @@ footer{
         <div class="video-card">
 
             <video controls>
-                <source src="video3.mp4" type="video/mp4">
+                <source src="videos/vid3.mp4" type="video/mp4">
             </video>
 
-            <div class="overlay"></div>
-
             <div class="video-info">
-                <h3>Brand Video</h3>
-                <p>Premium montage</p>
+                <h3>Рилс:Покажи свою Библию</h3>
+                <p></p>
             </div>
 
         </div>
@@ -297,14 +317,12 @@ footer{
         <div class="video-card">
 
             <video controls>
-                <source src="video4.mp4" type="video/mp4">
+                <source src="videos/vid4.mp4" type="video/mp4">
             </video>
 
-            <div class="overlay"></div>
-
             <div class="video-info">
-                <h3>Social Reel</h3>
-                <p>High retention edit</p>
+                <h3>Забавный рилс с приглашением на мероприятие</h3>
+                <p></p>
             </div>
 
         </div>
